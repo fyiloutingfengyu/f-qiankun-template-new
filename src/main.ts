@@ -1,23 +1,19 @@
 import { createApp } from 'vue';
-import { registerMicroApps, start } from 'qiankun';
+import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
 import './style.scss';
 import App from './App.vue';
+import microApps from './micro-apps-config.ts';
 
 createApp(App).mount('#app');
 
-registerMicroApps([
-  {
-    name: 'reactApp',
-    entry: '//localhost:3000',
-    container: '#container',
-    activeRule: '/app-react',
-  },
-  {
-    name: 'vueApp',
-    entry: '//localhost:8080',
-    container: '#container',
-    activeRule: '/app-vue',
+registerMicroApps(microApps, {
+    beforeLoad: (app) => {
+      console.log('beforeLoad', app);
+      return Promise.resolve();
+    },
   }
-]);
+);
+
+setDefaultMountApp('/sub-vue');
 
 start();
