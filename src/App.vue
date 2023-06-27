@@ -21,7 +21,7 @@ const goto = (item) => {
       {{ item.name }}
     </li>
   </ul>
-  <div id="container"></div>
+  <div id="container" class="container"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -37,5 +37,9 @@ const goto = (item) => {
   .active {
     color: skyblue;
   }
+}
+
+.container {
+  margin-top: 100px;
 }
 </style>
